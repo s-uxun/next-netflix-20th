@@ -24,8 +24,8 @@
 ### 필수 요건
 
 - [결과화면](https://next-netflix-18th-2.vercel.app/)의 상세 페이지와 검색 페이지를 구현합니다.
-    - 상세 페이지는 동적 라우팅을 이용해 구현합니다.
-    - 검색 페이지는 실시간 키워드 검색으로 구현합니다.
+  - 상세 페이지는 동적 라우팅을 이용해 구현합니다.
+  - 검색 페이지는 실시간 키워드 검색으로 구현합니다.
 - [Figma](https://www.figma.com/file/UqdXDovIczt1Gl0IjknHQf/Netflix?node-id=0%3A1)의 디자인을 그대로 구현합니다.
 - **SSR**을 적용해서 구현합니다.
 - Open api를 사용해서 데이터 패칭을 진행합니다. (ex. [themoviedb API](https://developers.themoviedb.org/3/getting-started/introduction))
@@ -39,14 +39,14 @@
 ## **Key Question**
 
 - React 18 버전의 변경점에 대해 설명해주세요.(+ 19 버전에 대한 추가 설명도 좋습니다)
-    - 서버 컴포넌트와 클라이언트 컴포넌트
-    - lazy loading과 Suspense 컴포넌트
-    - automatic batching, 동시성 모드 등 추가적으로 더 설명해주셔도 됩니다!
+  - 서버 컴포넌트와 클라이언트 컴포넌트
+  - lazy loading과 Suspense 컴포넌트
+  - automatic batching, 동시성 모드 등 추가적으로 더 설명해주셔도 됩니다!
 - nextJS 13 이후의 app routing 방식의 특징과 기능에 대해 설명해주세요.
-    - 13 이전의 페이지 라우팅과의 디렉터리 구성 변화
-    - nextJS가 백엔드 시스템을 녹여내는 방법
-    - 패러랠, 인터셉팅 라우트란 무엇인가?
-    - nextJS에서 SSR, SSG를 구현하는 방법
+  - 13 이전의 페이지 라우팅과의 디렉터리 구성 변화
+  - nextJS가 백엔드 시스템을 녹여내는 방법
+  - 패러랠, 인터셉팅 라우트란 무엇인가?
+  - nextJS에서 SSR, SSG를 구현하는 방법
 - vercel, netlify 같은 호스팅 플랫폼의 특징과 내부 구현 원리에 대해 설명해주세요(+ aws의 스토리지와 인스턴스 등 생태계에 대해서도 알려주세요)
 
 ## 링크 및 참고자료

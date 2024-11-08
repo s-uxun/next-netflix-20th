@@ -34,6 +34,10 @@
     -o-user-drag: none;
   }
 
+  input:focus {
+    outline: none;
+  }
+
   /* width */
   ::-webkit-scrollbar {
     width: 5px;

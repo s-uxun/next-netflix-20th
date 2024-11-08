@@ -7,8 +7,12 @@ import ComingIcon from '@public/icons/coming.svg';
 import DownloadIcon from '@public/icons/download.svg';
 import MoreIcon from '@public/icons/more.svg';
 
-export default function Footer() {
-  const [isActive, setIsActive] = useState(1); // 클릭하는 메뉴 id
+interface FooterProp {
+  tab: number;
+}
+
+export default function Footer({ tab }: FooterProp) {
+  const [isActive, setIsActive] = useState(tab); // 클릭하는 메뉴 id
   const handleClick = (id: number) => {
     setIsActive(id); // 추후 경로 이동 로직 추가
   };
@@ -52,7 +56,7 @@ export default function Footer() {
   ];
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-[375px]">
       <span className="flex flex-row justify-around items-center bg-Black_Black w-full h-12">
         {menus.map((item) => (
           <div

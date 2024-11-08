@@ -45,13 +45,13 @@
 
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #fff;
+    background: transparent;
     border-radius: 5px;
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #fff;
+    background: transparent;
     border-radius: 5px;
   }
 }

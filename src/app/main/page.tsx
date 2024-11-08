@@ -1,9 +1,15 @@
+import Header from '@components/common/Header';
+import Top10 from '@public/icons/top10.svg';
+import Plus from '@public/icons/plus.svg';
+import Play from '@public/icons/play.svg';
+import Info from '@public/icons/info.svg';
 import Footer from '@components/common/Footer';
 
 export default function Main() {
   return (
-    <div className="flex flex-col w-full">
-      <div className="bg-Gray w-full h-96"></div>
+    <div className="flex flex-col w-full h-screen">
+      <Header />
+      <div className="flex-grow bg-Gray w-full"></div>
       <Footer />
     </div>
   );

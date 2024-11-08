@@ -1,5 +1,6 @@
 'use client'; // 사용자가 메뉴를 클릭하므로 클라이언트 컴포넌트로 처리
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import HomeIcon from '@public/icons/home.svg';
 import SearchIcon from '@public/icons/search.svg';
@@ -12,9 +13,21 @@ interface FooterProp {
 }
 
 export default function Footer({ tab }: FooterProp) {
+  const router = useRouter();
   const [isActive, setIsActive] = useState(tab); // 클릭하는 메뉴 id
+
   const handleClick = (id: number) => {
-    setIsActive(id); // 추후 경로 이동 로직 추가
+    setIsActive(id);
+    switch (id) {
+      case 1:
+        router.push('/main');
+        break;
+      case 2:
+        router.push('/search');
+        break;
+      default:
+        router.push('/');
+    }
   };
 
   const menus = [

@@ -1,18 +1,15 @@
 import type { NextConfig } from 'next';
 
-const { API_KEY } = process.env;
-
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
   async rewrites() {
     return [
       {
-        source: '/api/movies',
-        destination: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
+        source: '/api/searchMovies',
+        destination: `${process.env.NEXT_PUBLIC_URL}/search/movie?language=en-US&page=2&include_adult=false&query=the&api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+        //destination: `${process.env.NEXT_PUBLIC_URL}/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
       },
     ];
   },
-
   webpack: (config) => {
     config.module.rules.push({
       test: /\.svg$/i,

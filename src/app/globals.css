@@ -40,18 +40,18 @@
 
   /* width */
   ::-webkit-scrollbar {
-    width: 5px;
+    width: 0px;
   }
 
   /* Track */
   ::-webkit-scrollbar-track {
     background: transparent;
-    border-radius: 5px;
+    border-radius: 0px;
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: transparent;
-    border-radius: 5px;
+    border-radius: 0px;
   }
 }

@@ -50,13 +50,14 @@ export default function Footer() {
       active: 'fill-White',
     },
   ];
+
   return (
     <div className="flex flex-col w-full">
       <span className="flex flex-row justify-around items-center bg-Black_Black w-full h-12">
         {menus.map((item) => (
           <div
             key={item.id}
-            className="flex flex-col cursor-pointer w-[3.1875rem] justify-center items-center"
+            className="flex flex-col cursor-pointer w-[3.4rem] justify-center items-center"
             onClick={() => handleClick(item.id)}
           >
             <item.Icon

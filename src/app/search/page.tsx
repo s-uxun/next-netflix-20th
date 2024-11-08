@@ -20,8 +20,8 @@ export default function Search() {
     const fetchMovies = async () => {
       try {
         const response = await getSearch();
-        setMovies(response);
-        console.log(response);
+        setMovies(response.data.results);
+        console.log(response.data.results);
       } catch (error) {}
     };
 

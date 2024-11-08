@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import Lottie from 'react-lottie-player';
-import logo from '../../public/json/netflix-lottie.json';
+import logo from '@public/json/netflix-lottie.json';
 
 export const LandingLogo = () => {
   const router = useRouter();

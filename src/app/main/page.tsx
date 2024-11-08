@@ -1,4 +1,4 @@
-import Footer from '@/src/components/common/Footer';
+import Footer from '@/components/common/Footer';
 
 export default function Main() {
   return (

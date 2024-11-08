@@ -1,11 +1,11 @@
 'use client'; // 사용자가 메뉴를 클릭하므로 클라이언트 컴포넌트로 처리
 import { useState } from 'react';
 
-import HomeIcon from '../../public/icons/home.svg';
-import SearchIcon from '../../public/icons/search.svg';
-import ComingIcon from '../../public/icons/coming.svg';
-import DownloadIcon from '../../public/icons/download.svg';
-import MoreIcon from '../../public/icons/more.svg';
+import HomeIcon from '@public/icons/home.svg';
+import SearchIcon from '@public/icons/search.svg';
+import ComingIcon from '@public/icons/coming.svg';
+import DownloadIcon from '@public/icons/download.svg';
+import MoreIcon from '@public/icons/more.svg';
 
 export default function Footer() {
   const [isActive, setIsActive] = useState(1); // 클릭하는 메뉴 id

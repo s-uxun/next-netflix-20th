@@ -14,18 +14,21 @@ interface Movie {
 
 export default function Search() {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [query, setQuery] = useState('');
 
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const response = await getSearch();
+        const response = await getSearch(query);
         setMovies(response || []);
         console.log(response);
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     };
 
     fetchMovies();
-  }, []);
+  }, [query]);
 
   return (
     <div className="flex flex-col w-full h-screen">
@@ -35,8 +38,10 @@ export default function Search() {
           <input
             className="flex w-[16.875rem] text-[#c4c4c4] text-[0.951rem] bg-transparent ml-2 mr-6"
             placeholder="Search for a show, movie, genre, etc."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
           />
-          <CloseIcon />
+          <CloseIcon onClick={() => setQuery('')} />
         </div>
         <div className="text-White text-[1.67175rem] font-bold my-[1.31rem]">
           Top Searches

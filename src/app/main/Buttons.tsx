@@ -17,7 +17,9 @@ const Buttons = () => {
           <Plus className="w-6" />
           <p>My List</p>
         </div>
-        <Play className="w-28 cursor-pointer hover:opacity-80" />
+        <div className="flex w-32 h-12 items-center justify-center bg-[#C4C4C4] rounded-md hover:opacity-70 cursor-pointer">
+          <Play />
+        </div>
         <div className={`${center} flex-col cursor-pointer hover:opacity-70`}>
           <Info className="w-6" />
           <p>Info</p>

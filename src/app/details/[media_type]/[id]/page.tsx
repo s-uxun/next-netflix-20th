@@ -1,6 +1,6 @@
 import { getDetails } from '@api/getData';
 import Footer from '@components/common/Footer';
-import { Content } from '@api/types';
+import Play from '@public/icons/play.svg';
 
 export default async function Detail({
   params,
@@ -24,8 +24,15 @@ export default async function Detail({
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>
           </div>
-          <p>{content.title || content.name}</p>
-          <p>{content.overview}</p>
+          <div className="p-7">
+            <div className="flex w-full h-12 items-center justify-center bg-[#C4C4C4] rounded-md hover:opacity-70 cursor-pointer mb-7">
+              <Play />
+            </div>
+            <p className="text-2xl font-bold mb-4">
+              {content.title || content.name}
+            </p>
+            <p className="text-xs font-normal ">{content.overview}</p>
+          </div>
         </div>
         <Footer tab={1} />
       </div>

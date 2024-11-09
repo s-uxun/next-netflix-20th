@@ -18,7 +18,9 @@ export default function Item({ id, title, posterUrl }: ItemProps) {
           />
         </span>
         <span className="flex flex-row w-[14.31rem] items-center pl-[1.13rem] pr-3 justify-between">
-          <span className="text-White w-40 text-[0.92013rem]">{title}</span>
+          <span className="text-White w-40 h-10 flex items-center text-[0.92013rem] overflow-hidden">
+            {title}
+          </span>
           <PlayBtn />
         </span>
       </span>

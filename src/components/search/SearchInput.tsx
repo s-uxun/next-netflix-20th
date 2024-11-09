@@ -1,4 +1,5 @@
 'use client';
+import React, { memo } from 'react';
 import SearchIcon from '@public/icons/search2.svg';
 import CloseIcon from '@public/icons/close.svg';
 
@@ -7,7 +8,7 @@ interface InputProps {
   query: string;
 }
 
-export default function SearchInput({ onChange, query }: InputProps) {
+function SearchInput({ onChange, query }: InputProps) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
   };
@@ -29,3 +30,5 @@ export default function SearchInput({ onChange, query }: InputProps) {
     </div>
   );
 }
+
+export default memo(SearchInput);

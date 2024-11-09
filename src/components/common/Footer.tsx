@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useState, memo } from 'react';
 import { useRouter } from 'next/navigation';
 
 import HomeIcon from '@public/icons/home.svg';
@@ -92,4 +92,4 @@ function Footer({ tab }: FooterProp) {
   );
 }
 
-export default React.memo(Footer);
+export default memo(Footer);

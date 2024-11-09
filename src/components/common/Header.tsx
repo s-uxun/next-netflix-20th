@@ -8,7 +8,7 @@ export default function Header() {
       <div className="flex w-full justify-between">
         <p className={headerItemClass}>TV Shows</p>
         <p className={headerItemClass}>Movies</p>
-        <p className={headerItemClass}>My List</p>
+        <p className={`${headerItemClass} mr-2`}>My List</p>
       </div>
     </div>
   );

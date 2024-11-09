@@ -1,7 +1,6 @@
 import { getDetails } from '@api/getData';
 import Footer from '@components/common/Footer';
 import Play from '@public/icons/play.svg';
-import Image from 'next/image';
 
 export default async function Detail({
   params,
@@ -17,7 +16,7 @@ export default async function Detail({
       <div className="flex flex-col w-full h-screen">
         <div className="flex-grow w-full overflow-auto">
           <div className="relative">
-            <Image
+            <img
               src={`https://image.tmdb.org/t/p/original${content.poster_path}`}
               alt={content.title}
               className="w-full h-96 object-cover"

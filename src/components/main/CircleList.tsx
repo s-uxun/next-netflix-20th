@@ -1,6 +1,5 @@
 import { Content } from '@api/types';
 import Link from 'next/link';
-import Image from 'next/image';
 
 const CircleList = ({
   contents,
@@ -18,7 +17,7 @@ const CircleList = ({
             key={content.id}
             href={`/details/${content.media_type}/${content.id}`}
           >
-            <Image
+            <img
               key={content.id}
               src={`https://image.tmdb.org/t/p/original${content.poster_path}`}
               alt={content.title}

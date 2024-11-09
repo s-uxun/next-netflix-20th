@@ -1,5 +1,4 @@
 import { Content } from '@api/types';
-import Image from 'next/image';
 import Link from 'next/link';
 
 const SquareList = ({
@@ -18,7 +17,7 @@ const SquareList = ({
             key={content.id}
             href={`/details/${content.media_type}/${content.id}`}
           >
-            <Image
+            <img
               key={content.id}
               src={`https://image.tmdb.org/t/p/original${content.poster_path}`}
               alt={content.title}

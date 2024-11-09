@@ -1,6 +1,6 @@
 import instance from './instance';
 
-export const getMovies = async (category: string) => {
+export const getContents = async (category: string) => {
   try {
     const res = await instance.get(`${category}`, {
       params: {
@@ -8,7 +8,13 @@ export const getMovies = async (category: string) => {
         page: 1,
       },
     });
-    return res.data.results;
+
+    const media_type = category.includes('/tv') ? 'tv' : 'movie';
+
+    return res.data.results.map((item: any) => ({
+      ...item,
+      media_type,
+    }));
   } catch (error) {
     console.error();
   }
@@ -26,23 +32,22 @@ export const getAllMovies = async () => {
     'tv/top_rated',
   ];
   try {
-    const movies = await Promise.all(categories.map(getMovies));
+    const movies = await Promise.all(categories.map(getContents));
     return movies;
   } catch (error) {
-    console.error();
+    console.log(error);
   }
 };
 
-export const getDetails = async (id: string) => {
+export const getDetails = async (media_type: string, id: string) => {
   try {
-    const res = await instance.get(`/movie/${id}`, {
+    const res = await instance.get(`/${media_type}/${id}`, {
       params: {
         language: 'en-US',
-        page: 1,
       },
     });
     return res.data;
   } catch (error) {
-    console.error();
+    console.log(error);
   }
 };

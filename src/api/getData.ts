@@ -30,7 +30,7 @@ export const getAllMovies = async () => {
     '/tv/airing_today',
     '/tv/on_the_air',
     '/tv/popular',
-    'tv/top_rated',
+    '/tv/top_rated',
   ];
   try {
     const movies = await Promise.all(categories.map(getContents));

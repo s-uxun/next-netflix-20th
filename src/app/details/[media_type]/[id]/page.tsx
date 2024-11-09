@@ -3,8 +3,12 @@ import Footer from '@components/common/Footer';
 import Play from '@public/icons/play.svg';
 import { Content } from '@api/types';
 
-export default async function Detail({ params }: any) {
-  const { media_type, id } = await params;
+interface DetailPageProps {
+  params: { [key: string]: string };
+}
+
+export default async function Detail({ params }: DetailPageProps) {
+  const { media_type, id } = params;
 
   try {
     const content: Content = await getDetails(media_type, id);

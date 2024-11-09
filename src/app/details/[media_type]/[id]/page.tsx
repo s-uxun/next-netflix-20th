@@ -1,6 +1,7 @@
 import { getDetails } from '@api/getData';
 import Footer from '@components/common/Footer';
 import Play from '@public/icons/play.svg';
+import { Content } from '@api/types';
 
 export default async function Detail({
   params,
@@ -10,7 +11,7 @@ export default async function Detail({
   const { media_type, id } = params;
 
   try {
-    const content = await getDetails(media_type, id);
+    const content: Content = await getDetails(media_type, id);
 
     return (
       <div className="flex flex-col w-full h-screen">

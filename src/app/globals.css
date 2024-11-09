@@ -35,8 +35,24 @@
     -o-user-drag: none;
   }
 
+  input:focus {
+    outline: none;
+  }
+
   /* width */
   ::-webkit-scrollbar {
     width: 0px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 0px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 0px;
   }
 }

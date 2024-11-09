@@ -15,4 +15,10 @@ export interface Movie {
   vote_count: number;
 }
 
+export interface SearchedMovie {
+  id: number;
+  original_title: string;
+  poster_path: string;
+}
+
 export type MoviesArray = Movie[][];

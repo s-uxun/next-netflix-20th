@@ -16,3 +16,11 @@ export interface Content {
   vote_count: number;
   media_type: 'movie' | 'tv';
 }
+
+export interface SearchedMovie {
+  id: number;
+  original_title: string;
+  poster_path: string;
+}
+
+export type MoviesArray = Movie[][];

@@ -4,9 +4,12 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        source: '/api/searchDefault',
+        destination: `${process.env.NEXT_PUBLIC_URL}/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+      },
+      {
         source: '/api/searchMovies',
-        destination: `${process.env.NEXT_PUBLIC_URL}/search/movie?&language=en-US&page=1&include_adult=false&query=today&api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
-        //destination: `${process.env.NEXT_PUBLIC_URL}/movie/top_rated?api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
+        destination: `${process.env.NEXT_PUBLIC_URL}/search/movie?&language=en-US&page=1&include_adult=false&api_key=${process.env.NEXT_PUBLIC_API_KEY}`,
       },
     ];
   },

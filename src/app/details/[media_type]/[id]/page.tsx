@@ -30,7 +30,9 @@ export default async function Detail({
             <p className="text-2xl font-bold mb-4">
               {content.title || content.name}
             </p>
-            <p className="text-xs font-normal ">{content.overview}</p>
+            <p className="text-xs font-normal ">
+              {content.overview || '상세 정보가 없습니다.'}
+            </p>
           </div>
         </div>
         <Footer tab={1} />

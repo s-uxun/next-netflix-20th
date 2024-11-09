@@ -1,4 +1,5 @@
 import instance from './instance';
+import { Content } from './types';
 
 export const getContents = async (category: string) => {
   try {
@@ -11,7 +12,7 @@ export const getContents = async (category: string) => {
 
     const media_type = category.includes('/tv') ? 'tv' : 'movie';
 
-    return res.data.results.map((item: any) => ({
+    return res.data.results.map((item: Content) => ({
       ...item,
       media_type,
     }));

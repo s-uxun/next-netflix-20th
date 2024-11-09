@@ -3,19 +3,8 @@ import Footer from '@components/common/Footer';
 import Play from '@public/icons/play.svg';
 import { Content } from '@api/types';
 
-export default async function Detail({
-  params,
-}: {
-  params: { [key: string]: string | string[] | undefined };
-}) {
-  const media_type = Array.isArray(params.media_type)
-    ? params.media_type[0]
-    : params.media_type;
-  const id = Array.isArray(params.id) ? params.id[0] : params.id;
-
-  if (!media_type || !id) {
-    return <p>잘못된 요청입니다</p>;
-  }
+export default async function Detail({ params }: any) {
+  const { media_type, id } = await params;
 
   try {
     const content: Content = await getDetails(media_type, id);
@@ -26,7 +15,7 @@ export default async function Detail({
           <div className="relative">
             <img
               src={`https://image.tmdb.org/t/p/original${content.poster_path}`}
-              alt={content.title}
+              alt={content.title || content.name}
               className="w-full h-96 object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black"></div>

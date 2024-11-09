@@ -4,7 +4,6 @@ import Footer from '@components/common/Footer';
 import Item from '@components/search/Item';
 import SearchIcon from '@public/icons/search2.svg';
 import CloseIcon from '@public/icons/close.svg';
-
 import { getSearch } from '@api/search';
 
 interface Movie {
@@ -20,8 +19,8 @@ export default function Search() {
     const fetchMovies = async () => {
       try {
         const response = await getSearch();
-        setMovies(response.data.results);
-        console.log(response.data.results);
+        setMovies(response || []);
+        console.log(response);
       } catch (error) {}
     };
 

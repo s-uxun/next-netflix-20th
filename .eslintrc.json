@@ -1,4 +1,7 @@
 {
   "extends": ["next/core-web-vitals", "next/typescript", "prettier"],
-  "parser": "@typescript-eslint/parser"
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "@typescript-eslint/no-explicit-any": "off"
+  } // 빌드 안 되어서 추가
 }

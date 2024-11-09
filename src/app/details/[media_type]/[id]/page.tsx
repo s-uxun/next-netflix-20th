@@ -11,7 +11,6 @@ export default async function Detail({
 
   try {
     const content = await getDetails(media_type, id);
-    console.log('Movie:', content);
 
     return (
       <div className="flex flex-col w-full h-screen">

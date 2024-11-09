@@ -9,7 +9,6 @@ import Footer from '@components/common/Footer';
 export default async function Main() {
   try {
     const contents = (await getAllMovies()) || [];
-    console.log('Movies:', contents);
     const posterMovie = contents[2][1];
     const circleListData = {
       movies: contents[4],

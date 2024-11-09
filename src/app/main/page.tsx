@@ -10,7 +10,7 @@ export default async function Main() {
   try {
     const movies = (await getAllMovies()) || [];
     console.log('Movies:', movies);
-    const posterMovie = movies[2][0];
+    const posterMovie = movies[2][1];
     const circleListData = {
       movies: movies[4],
       title: 'Previews',
@@ -21,9 +21,13 @@ export default async function Main() {
       {
         type: 'SquareList',
         movies: movies[1],
+        title: 'Trending Now',
+      },
+      {
+        type: 'SquareList',
+        movies: movies[2],
         title: 'Top 10 in Nigeria Today',
       },
-      { type: 'SquareList', movies: movies[2], title: 'Trending Now' },
       { type: 'SquareList', movies: movies[3], title: 'My List' },
       { type: 'BigSquareList', movies: movies[5], title: 'Netflix Originals' },
       { type: 'SquareList', movies: movies[6], title: 'Watch It Again' },
@@ -52,8 +56,8 @@ export default async function Main() {
               return (
                 <SquareList
                   key={index}
-                  // movies={data.movies}
-                  // title={data.title}
+                  movies={data.movies}
+                  title={data.title}
                 />
               );
             } else if (data.type === 'BigSquareList') {

@@ -6,9 +6,16 @@ import { Content } from '@api/types';
 export default async function Detail({
   params,
 }: {
-  params: { media_type: string; id: string };
+  params: { [key: string]: string | string[] | undefined };
 }) {
-  const { media_type, id } = params;
+  const media_type = Array.isArray(params.media_type)
+    ? params.media_type[0]
+    : params.media_type;
+  const id = Array.isArray(params.id) ? params.id[0] : params.id;
+
+  if (!media_type || !id) {
+    return <p>잘못된 요청입니다</p>;
+  }
 
   try {
     const content: Content = await getDetails(media_type, id);

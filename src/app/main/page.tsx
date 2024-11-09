@@ -64,8 +64,8 @@ export default async function Main() {
               return (
                 <BigSquareList
                   key={index}
-                  // movies={data.movies}
-                  // title={data.title}
+                  movies={data.movies}
+                  title={data.title}
                 />
               );
             }

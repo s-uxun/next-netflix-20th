@@ -1,10 +1,11 @@
 'use client';
 import { useEffect, useState } from 'react';
+import { getSearch } from '@api/search';
+
 import Footer from '@components/common/Footer';
 import Item from '@components/search/Item';
 import SearchIcon from '@public/icons/search2.svg';
 import CloseIcon from '@public/icons/close.svg';
-import { getSearch } from '@api/search';
 
 interface Movie {
   id: number;
@@ -32,7 +33,7 @@ export default function Search() {
 
   return (
     <div className="flex flex-col w-full h-screen">
-      <div className="flex flex-col flex-grow overflow-auto">
+      <div className="flex flex-col flex-grow overflow-auto pb-[1.44rem]">
         <div className="flex h-[3.25rem] flex-shrink-0 flex-row bg-[#424242] items-center pl-5 pr-[1.12rem] mt-11">
           <SearchIcon />
           <input
@@ -41,7 +42,7 @@ export default function Search() {
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
-          <CloseIcon onClick={() => setQuery('')} />
+          <CloseIcon onClick={() => setQuery('')} className="cursor-pointer" />
         </div>
         <div className="text-White text-[1.67175rem] font-bold my-[1.31rem]">
           Top Searches

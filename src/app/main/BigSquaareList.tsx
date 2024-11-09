@@ -16,7 +16,7 @@ const BigSquareList = ({
             key={movie.id}
             src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
             alt={movie.title}
-            className="h-60 min-w-36 object-cover rounded-sm"
+            className="h-60 min-w-36 object-cover rounded-sm cursor-pointer hover:scale-105 hover: my-1"
           />
         ))}
       </div>

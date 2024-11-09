@@ -13,12 +13,12 @@ const Buttons = () => {
         <p>#2 in Nigeria Today</p>
       </div>
       <div className="flex justify-evenly items-center">
-        <div className={`${center} flex-col cursor-pointer`}>
+        <div className={`${center} flex-col cursor-pointer hover:opacity-70`}>
           <Plus className="w-6" />
           <p>My List</p>
         </div>
-        <Play className="w-28 cursor-pointer" />
-        <div className={`${center} flex-col cursor-pointer`}>
+        <Play className="w-28 cursor-pointer hover:opacity-80" />
+        <div className={`${center} flex-col cursor-pointer hover:opacity-70`}>
           <Info className="w-6" />
           <p>Info</p>
         </div>

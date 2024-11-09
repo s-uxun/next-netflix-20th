@@ -1,6 +1,4 @@
 'use client';
-
-import { useState } from 'react';
 import SearchIcon from '@public/icons/search2.svg';
 import CloseIcon from '@public/icons/close.svg';
 
@@ -10,16 +8,11 @@ interface InputProps {
 }
 
 export default function SearchInput({ onChange, query }: InputProps) {
-  const [keyword, setKeyword] = useState(query);
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const text = e.target.value;
-    setKeyword(text);
-    onChange(text);
+    onChange(e.target.value);
   };
 
   const handleClear = () => {
-    setKeyword('');
     onChange('');
   };
 
@@ -29,7 +22,7 @@ export default function SearchInput({ onChange, query }: InputProps) {
       <input
         className="flex w-[16.875rem] text-[#c4c4c4] text-[0.951rem] bg-transparent ml-2 mr-6"
         placeholder="Search for a show, movie, genre, etc."
-        value={keyword}
+        value={query}
         onChange={handleChange}
       />
       <CloseIcon onClick={handleClear} />

@@ -1,5 +1,5 @@
-'use client'; // 사용자가 메뉴를 클릭하므로 클라이언트 컴포넌트로 처리
-import { useState } from 'react';
+'use client';
+import React, { useState, memo } from 'react';
 import { useRouter } from 'next/navigation';
 
 import HomeIcon from '@public/icons/home.svg';
@@ -12,7 +12,7 @@ interface FooterProp {
   tab: number;
 }
 
-export default function Footer({ tab }: FooterProp) {
+function Footer({ tab }: FooterProp) {
   const router = useRouter();
   const [isActive, setIsActive] = useState(tab); // 클릭하는 메뉴 id
 
@@ -91,3 +91,5 @@ export default function Footer({ tab }: FooterProp) {
     </div>
   );
 }
+
+export default memo(Footer);

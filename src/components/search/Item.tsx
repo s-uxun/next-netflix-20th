@@ -10,7 +10,7 @@ interface ItemProps {
 export default function Item({ id, title, posterUrl }: ItemProps) {
   return (
     <Link href={`/details/movie/${id}`}>
-      <span className="flex flex-row w-full h-[4.75rem] bg-[#424242] mb-[0.19rem] hover:scale-95">
+      <span className="flex flex-row w-full h-[4.75rem] bg-[#424242] mb-[0.19rem] hover:bg-[#333333]">
         <span className="w-[9.125rem] h-full">
           <img
             src={`https://image.tmdb.org/t/p/w500${posterUrl}`}

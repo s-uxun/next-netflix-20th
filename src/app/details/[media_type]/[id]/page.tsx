@@ -3,10 +3,12 @@ import Footer from '@components/common/Footer';
 import Play from '@public/icons/play.svg';
 import { Content } from '@api/types';
 
-export default async function Detail({ params }: any) {
-  // @ts-ignore
-  const { media_type, id } = await params;
-  // 빌드 오류 너무 나서.. 어쩔 수 없이...
+interface DetailPageProps {
+  params: { media_type: string; id: string };
+}
+
+export default async function Detail({ params }: DetailPageProps) {
+  const { media_type, id } = params;
 
   try {
     const content: Content = await getDetails(media_type, id);

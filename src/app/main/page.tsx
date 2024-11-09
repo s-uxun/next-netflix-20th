@@ -2,7 +2,7 @@ import Header from '@components/common/Header';
 import { getAllMovies } from '@api/fetchData';
 import CircleList from './CircleList';
 import Buttons from './Buttons';
-import SquareList from './squareList';
+import SquareList from './SquareList';
 import BigSquareList from './BigSquaareList';
 import Footer from '@components/common/Footer';
 
@@ -44,31 +44,31 @@ export default async function Main() {
           </div>
           <Buttons />
           <CircleList
-            movies={circleListData.movies}
-            title={circleListData.title}
+          // movies={circleListData.movies}
+          // title={circleListData.title}
           />
           {squareListData.map((data, index) => {
             if (data.type === 'SquareList') {
               return (
                 <SquareList
                   key={index}
-                  movies={data.movies}
-                  title={data.title}
+                  // movies={data.movies}
+                  // title={data.title}
                 />
               );
             } else if (data.type === 'BigSquareList') {
               return (
                 <BigSquareList
                   key={index}
-                  movies={data.movies}
-                  title={data.title}
+                  // movies={data.movies}
+                  // title={data.title}
                 />
               );
             }
             return null;
           })}
         </div>
-        <Footer />
+        <Footer tab={1} />
       </div>
     );
   } catch (error) {

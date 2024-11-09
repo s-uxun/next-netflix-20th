@@ -1,8 +1,9 @@
 export const getSearch = async (query: string) => {
   try {
-    const apiUrl = query
-      ? `/api/searchMovies?query=${query}`
-      : '/api/searchDefault';
+    const apiUrl =
+      query.length > 0
+        ? `/api/searchMovies?query=${query}`
+        : '/api/searchDefault';
 
     const searchRes = await fetch(apiUrl, {
       cache: 'no-store',

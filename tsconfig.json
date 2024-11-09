@@ -8,6 +8,7 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
+    "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
@@ -23,20 +24,11 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@public/*": [
-        "public/*"
-      ],
-      "@api/*": [
-        "src/api/*"
-      ],
-      "@app/*": [
-        "src/app/*"
-      ],
-      "@components/*": [
-        "src/components/*"
-      ]
-    },
-    "strict": false
+      "@public/*": ["public/*"],
+      "@api/*": ["src/api/*"],
+      "@app/*": ["src/app/*"],
+      "@components/*": ["src/components/*"]
+    }
   },
   "include": [
     "next-env.d.ts",

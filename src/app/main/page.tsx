@@ -16,7 +16,7 @@ export default async function Main() {
       <div className="flex flex-col w-full h-screen">
         <Header />
         <div className="flex-grow bg-Gray w-full"></div>
-        <Footer />
+        <Footer tab={1} />
       </div>
     );
   } catch (error) {

@@ -34,20 +34,24 @@
     -o-user-drag: none;
   }
 
+  input:focus {
+    outline: none;
+  }
+
   /* width */
   ::-webkit-scrollbar {
-    width: 5px;
+    width: 0px;
   }
 
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #fff;
-    border-radius: 5px;
+    background: transparent;
+    border-radius: 0px;
   }
 
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #fff;
-    border-radius: 5px;
+    background: transparent;
+    border-radius: 0px;
   }
 }

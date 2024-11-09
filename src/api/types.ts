@@ -22,5 +22,3 @@ export interface SearchedMovie {
   original_title: string;
   poster_path: string;
 }
-
-export type MoviesArray = Movie[][];

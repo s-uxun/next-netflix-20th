@@ -44,7 +44,7 @@ export default function Search() {
           />
           <CloseIcon onClick={() => setQuery('')} className="cursor-pointer" />
         </div>
-        <div className="text-White text-[1.67175rem] font-bold my-[1.31rem]">
+        <div className="text-White text-[1.67175rem] font-bold my-4">
           Top Searches
         </div>
         {movies.map((movie) => (

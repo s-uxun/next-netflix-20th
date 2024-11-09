@@ -39,11 +39,10 @@ export const getAllMovies = async () => {
   }
 };
 
-export const getDetails = async (id: string) => {
+export const getDetails = async (media_type: string, id: string) => {
   try {
-    const res = await instance.get(`/find/${id}`, {
+    const res = await instance.get(`/${media_type}/${id}`, {
       params: {
-        external_source: 'imdb_id',
         language: 'en-US',
       },
     });

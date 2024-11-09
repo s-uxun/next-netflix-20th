@@ -13,7 +13,10 @@ const CircleList = ({
       <p className="text-3xl font-bold mb-6">{title}</p>
       <div className="flex overflow-scroll">
         {contents.map((content) => (
-          <Link key={content.id} href={`/details/${content.id}`}>
+          <Link
+            key={content.id}
+            href={`/details/${content.media_type}/${content.id}`}
+          >
             <img
               key={content.id}
               src={`https://image.tmdb.org/t/p/original${content.poster_path}`}

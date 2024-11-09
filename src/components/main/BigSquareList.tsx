@@ -1,5 +1,6 @@
 import { Content } from '@api/types';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const BigSquareList = ({
   contents,
@@ -17,7 +18,7 @@ const BigSquareList = ({
             key={content.id}
             href={`/details/${content.media_type}/${content.id}`}
           >
-            <img
+            <Image
               key={content.id}
               src={`https://image.tmdb.org/t/p/original${content.poster_path}`}
               alt={content.title}

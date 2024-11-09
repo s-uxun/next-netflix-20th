@@ -5,6 +5,7 @@ import Buttons from '@components/main/Buttons';
 import SquareList from '@components/main/SquareList';
 import BigSquareList from '@components/main/BigSquareList';
 import Footer from '@components/common/Footer';
+import Image from 'next/image';
 
 export default async function Main() {
   try {
@@ -42,7 +43,7 @@ export default async function Main() {
         <Header />
         <div className="flex-grow w-full overflow-auto">
           <div className="relative">
-            <img
+            <Image
               src={`https://image.tmdb.org/t/p/original${posterMovie.poster_path}`}
               alt={posterMovie.title}
               className="w-full h-96 object-cover"

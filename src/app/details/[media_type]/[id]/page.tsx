@@ -1,6 +1,7 @@
 import { getDetails } from '@api/getData';
 import Footer from '@components/common/Footer';
 import Play from '@public/icons/play.svg';
+import Image from 'next/image';
 
 export default async function Detail({
   params,
@@ -16,7 +17,7 @@ export default async function Detail({
       <div className="flex flex-col w-full h-screen">
         <div className="flex-grow w-full overflow-auto">
           <div className="relative">
-            <img
+            <Image
               src={`https://image.tmdb.org/t/p/original${content.poster_path}`}
               alt={content.title}
               className="w-full h-96 object-cover"
@@ -30,7 +31,9 @@ export default async function Detail({
             <p className="text-2xl font-bold mb-4">
               {content.title || content.name}
             </p>
-            <p className="text-xs font-normal ">{content.overview}</p>
+            <p className="text-xs font-normal ">
+              {content.overview || '상세 정보가 없습니다.'}
+            </p>
           </div>
         </div>
         <Footer tab={1} />

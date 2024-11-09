@@ -48,8 +48,8 @@ export default function SearchClient() {
         <div key={content.id}>
           <Item
             id={content.id}
-            title={content.original_title}
-            posterUrl={content.poster_path}
+            title={content.original_title as string}
+            posterUrl={content.poster_path as string}
           />
         </div>
       ))}

@@ -21,6 +21,6 @@ export interface Content {
 
 export interface SearchedMovie {
   id: number;
-  original_title: string | '';
-  poster_path: string | '';
+  original_title: string;
+  poster_path: string;
 }

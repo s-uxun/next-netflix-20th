@@ -7,7 +7,7 @@ const Buttons = () => {
   const center = 'flex justify-center items-center';
 
   return (
-    <div>
+    <div className="mb-12">
       <div className={`${center} mb-3 gap-2`}>
         <Top10 className="w-4" />
         <p>#1 in Nigeria Today</p>
@@ -17,7 +17,7 @@ const Buttons = () => {
           <Plus className="w-6" />
           <p>My List</p>
         </div>
-        <Play w-28 className="cursor-pointer" />
+        <Play className="w-28 cursor-pointer" />
         <div className={`${center} flex-col cursor-pointer`}>
           <Info className="w-6" />
           <p>Info</p>

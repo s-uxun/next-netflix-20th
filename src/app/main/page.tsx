@@ -1,5 +1,5 @@
 import Header from '@components/common/Header';
-import { getAllMovies } from '@api/fetchData';
+import { getAllMovies } from '@api/getData';
 import CircleList from './CircleList';
 import Buttons from './Buttons';
 import SquareList from './SquareList';
@@ -44,8 +44,8 @@ export default async function Main() {
           </div>
           <Buttons />
           <CircleList
-          // movies={circleListData.movies}
-          // title={circleListData.title}
+            movies={circleListData.movies}
+            title={circleListData.title}
           />
           {squareListData.map((data, index) => {
             if (data.type === 'SquareList') {

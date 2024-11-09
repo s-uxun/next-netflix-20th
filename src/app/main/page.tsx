@@ -1,9 +1,9 @@
 import Header from '@components/common/Header';
 import { getAllMovies } from '@api/getData';
-import CircleList from './CircleList';
-import Buttons from './Buttons';
-import SquareList from './SquareList';
-import BigSquareList from './BigSquaareList';
+import CircleList from '@components/main/CircleList';
+import Buttons from '@components/main/Buttons';
+import SquareList from '@components/main/SquareList';
+import BigSquareList from '@components/main/BigSquareList';
 import Footer from '@components/common/Footer';
 
 export default async function Main() {

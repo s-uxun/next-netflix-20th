@@ -7,18 +7,17 @@ import SearchInput from '@components/search/SearchInput';
 import Item from '@components/search/Item';
 
 // type & api
-import { SearchedMovie } from '@api/types';
+import { Content } from '@api/types';
 import { getSearch } from '@api/search';
 
 export default function SearchClient() {
-  const [movies, setMovies] = useState<SearchedMovie[]>([]);
+  const [contents, setContents] = useState<Content[]>([]);
   const [query, setQuery] = useState('');
 
   // 입력값 디바운싱
   const debouncedSearch = useDebouncedCallback(async (input) => {
-    console.log(`Searching...${input}`);
     const response = await getSearch(input);
-    setMovies(response || []);
+    setContents(response || []);
   }, 300);
 
   const handleChange = (input: string) => {
@@ -31,8 +30,7 @@ export default function SearchClient() {
     const fetchInitialData = async () => {
       try {
         const response = await getSearch('');
-        setMovies(response || []);
-        console.log(response);
+        setContents(response || []);
       } catch (error) {
         console.log(error);
       }
@@ -46,9 +44,13 @@ export default function SearchClient() {
       <div className="text-White text-[1.67175rem] font-bold my-4">
         Top Searches
       </div>
-      {movies.map((movie) => (
-        <div key={movie.id}>
-          <Item title={movie.original_title} posterUrl={movie.poster_path} />
+      {contents.map((content) => (
+        <div key={content.id}>
+          <Item
+            id={content.id}
+            title={content.original_title as string}
+            posterUrl={content.poster_path as string}
+          />
         </div>
       ))}
     </div>

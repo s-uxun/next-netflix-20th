@@ -17,7 +17,7 @@ export const getContents = async (category: string) => {
       media_type,
     }));
   } catch (error) {
-    console.error();
+    console.log(error);
   }
 };
 

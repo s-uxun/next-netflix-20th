@@ -11,30 +11,34 @@ export default async function Main() {
     const contents = (await getAllMovies()) || [];
     const posterMovie = contents[2][1];
     const circleListData = {
-      movies: contents[4],
+      contents: contents[4],
       title: 'Previews',
     };
 
     const squareListData = [
-      { type: 'SquareList', movies: contents[0], title: 'Popular on Netflix' },
       {
         type: 'SquareList',
-        movies: contents[1],
+        contents: contents[0],
+        title: 'Popular on Netflix',
+      },
+      {
+        type: 'SquareList',
+        contents: contents[1],
         title: 'Trending Now',
       },
       {
         type: 'SquareList',
-        movies: contents[2],
+        contents: contents[2],
         title: 'Top 10 in Nigeria Today',
       },
-      { type: 'SquareList', movies: contents[3], title: 'My List' },
+      { type: 'SquareList', contents: contents[3], title: 'My List' },
       {
         type: 'BigSquareList',
-        movies: contents[5],
+        contents: contents[5],
         title: 'Netflix Originals',
       },
-      { type: 'SquareList', movies: contents[6], title: 'Watch It Again' },
-      { type: 'SquareList', movies: contents[7], title: 'US TV Shows' },
+      { type: 'SquareList', contents: contents[6], title: 'Watch It Again' },
+      { type: 'SquareList', contents: contents[7], title: 'US TV Shows' },
     ];
 
     return (
@@ -51,7 +55,7 @@ export default async function Main() {
           </div>
           <Buttons />
           <CircleList
-            contents={circleListData.movies}
+            contents={circleListData.contents}
             title={circleListData.title}
           />
           {squareListData.map((data, index) => {
@@ -59,7 +63,7 @@ export default async function Main() {
               return (
                 <SquareList
                   key={index}
-                  contents={data.movies}
+                  contents={data.contents}
                   title={data.title}
                 />
               );
@@ -67,7 +71,7 @@ export default async function Main() {
               return (
                 <BigSquareList
                   key={index}
-                  contents={data.movies}
+                  contents={data.contents}
                   title={data.title}
                 />
               );

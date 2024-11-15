@@ -63,8 +63,8 @@ export default function SearchClient() {
       </div>
 
       <div>
-        {contents.map((content: Content) => (
-          <div key={content.id}>
+        {contents.map((content: Content, index) => (
+          <div key={`${content.id}-${index}`}>
             <Item
               id={content.id}
               title={content.original_title as string}
@@ -74,7 +74,7 @@ export default function SearchClient() {
         ))}
         <div className="w-full h-[5px] bg-transparent">
           {isFetchingNextPage ? (
-            <span>Loading...</span>
+            <span></span>
           ) : (
             hasNextPage && <div ref={ref}></div>
           )}

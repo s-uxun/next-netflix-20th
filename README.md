@@ -16,6 +16,8 @@
 
 - 검색 페이지 무한스크롤 구현
 
+<br/>
+
 ## 💡Key Questions
 
 ### 1️⃣ 무한 스크롤과 Intersection Observer API의 특징에 대해 알아봅시다.

@@ -18,6 +18,17 @@
 
 <br/>
 
+### 🩵 느낀 점
+
+**[송유선]** ..
+
+<br/>
+
+**[최지원]** ..
+
+
+<br/>
+
 ## 💡Key Questions
 
 ### 1️⃣ 무한 스크롤과 Intersection Observer API의 특징에 대해 알아봅시다.

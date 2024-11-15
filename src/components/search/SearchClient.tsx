@@ -1,6 +1,8 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
+import { useInfiniteQuery } from '@tanstack/react-query';
+import { useInView } from 'react-intersection-observer';
 
 // components
 import SearchInput from '@components/search/SearchInput';
@@ -8,16 +10,17 @@ import Item from '@components/search/Item';
 
 // type & api
 import { Content } from '@api/types';
-import { getSearch } from '@api/search';
+import { getSearchInfinite } from '@api/search';
 
 export default function SearchClient() {
   const [contents, setContents] = useState<Content[]>([]);
   const [query, setQuery] = useState('');
+  const [debouncedQuery, setDebouncedQuery] = useState('');
+  const { ref, inView } = useInView();
 
   // 입력값 디바운싱
-  const debouncedSearch = useDebouncedCallback(async (input) => {
-    const response = await getSearch(input);
-    setContents(response || []);
+  const debouncedSearch = useDebouncedCallback((input: string) => {
+    setDebouncedQuery(input);
   }, 300);
 
   const handleChange = (input: string) => {
@@ -25,18 +28,32 @@ export default function SearchClient() {
     debouncedSearch(input);
   };
 
-  // 초기 데이터 불러오기
+  // 무한 스크롤
+  const { data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    useInfiniteQuery({
+      queryKey: ['items', debouncedQuery],
+      queryFn: ({ pageParam = 1 }) => {
+        return getSearchInfinite({ page: pageParam, query: debouncedQuery });
+      },
+      getNextPageParam: (lastPage) =>
+        lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined,
+      initialPageParam: 1,
+    });
+
   useEffect(() => {
-    const fetchInitialData = async () => {
-      try {
-        const response = await getSearch('');
-        setContents(response || []);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchInitialData();
-  }, []);
+    if (data) {
+      const allItems = data?.pages.flatMap((page) => page.results) || [];
+      console.log('All fetched items:', allItems);
+      setContents(allItems);
+      console.log('ref' + ref);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if (inView && hasNextPage && !isFetchingNextPage) {
+      fetchNextPage();
+    }
+  }, [inView]);
 
   return (
     <div className="flex flex-col flex-grow overflow-auto">
@@ -44,15 +61,25 @@ export default function SearchClient() {
       <div className="text-White text-[1.67175rem] font-bold my-4">
         Top Searches
       </div>
-      {contents.map((content) => (
-        <div key={content.id}>
-          <Item
-            id={content.id}
-            title={content.original_title as string}
-            posterUrl={content.poster_path as string}
-          />
+
+      <div>
+        {contents.map((content: Content) => (
+          <div key={content.id}>
+            <Item
+              id={content.id}
+              title={content.original_title as string}
+              posterUrl={content.poster_path as string}
+            />
+          </div>
+        ))}
+        <div className="w-full h-[5px] bg-transparent">
+          {isFetchingNextPage ? (
+            <span>Loading...</span>
+          ) : (
+            hasNextPage && <div ref={ref}></div>
+          )}
         </div>
-      ))}
+      </div>
     </div>
   );
 }

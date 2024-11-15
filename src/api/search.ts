@@ -5,10 +5,9 @@ export const getSearchInfinite = async ({
   query,
 }: PageParams): Promise<SearchResponse> => {
   try {
-    const apiUrl =
-      query && query.length > 0
-        ? `/api/searchMovies?query=${query}&page=${page}`
-        : `/api/searchDefault?page=${page}`;
+    const apiUrl = query
+      ? `/api/searchMovies?query=${query}&page=${page}`
+      : `/api/searchDefault?page=${page}`;
 
     const searchRes = await fetch(apiUrl, {
       cache: 'no-store',

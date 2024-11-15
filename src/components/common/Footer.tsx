@@ -25,8 +25,15 @@ function Footer({ tab }: FooterProp) {
       case 2:
         router.push('/search');
         break;
-      default:
-        router.push('/');
+      case 3:
+        router.push('/comingsoon');
+        break;
+      case 4:
+        router.push('/downloads');
+        break;
+      case 5:
+        router.push('/more');
+        break;
     }
   };
 

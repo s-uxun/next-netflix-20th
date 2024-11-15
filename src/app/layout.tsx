@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import './globals.css';
+import Provider from '@components/common/Provider';
 
 export const metadata = {
   title: 'Netflix-Onedwo',
@@ -12,7 +13,9 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html>
-      <body>{children}</body>
+      <body>
+        <Provider>{children}</Provider>
+      </body>
     </html>
   );
 }

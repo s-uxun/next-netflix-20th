@@ -19,8 +19,21 @@ export interface Content {
   media_type?: 'movie' | 'tv';
 }
 
+// search
 export interface SearchedMovie {
   id: number;
   original_title: string;
   poster_path: string;
+}
+
+export interface PageParams {
+  page: number;
+  query: string;
+}
+
+export interface SearchResponse {
+  page: number;
+  results: Content[];
+  total_pages: number;
+  total_results: number;
 }

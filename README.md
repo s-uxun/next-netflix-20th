@@ -1,7 +1,5 @@
 # 5 ~ 6주차 미션: Next-Netflix
 
-<br>
-
 ## [🪄 결과물](https://next-netflix-20th-onedwo.vercel.app)
 
 ### 🩵 구현 기능
@@ -16,7 +14,141 @@
 
 - 실시간 키워드 검색으로 검색 페이지 구현
 
+- 검색 페이지 무한스크롤 구현
 
+## 💡Key Questions
+
+### 1️⃣ 무한 스크롤과 Intersection Observer API의 특징에 대해 알아봅시다.
+
+무한 스크롤: 사용자가 페이지 하단에 도달했을 때 콘텐츠가 계속 로드되는 사용자 경험 방식, 한 페이지 아래로 스크롤 하면 끝없이 새로운 화면을 보여줌
+
+Intersection Observer API: 브라우저 뷰포트(Viewport)와 원하는 요소(Element)의 **교차점**을 관찰하며, 요소가 뷰포트에 포함되는지 아닌지 (사용자 화면에 지금 보이는 요소인지 아닌지) 구별하는 기능을 제공함.
+
+- 비동기적으로 실행되어 요소 관찰에서 발생하는 렌더링 성능이나 이벤트 연속 호출 문제가 생기지 않는다.
+- `IntersectionObserverEntry` 의 속성을 활용하여 요소들의 위치를 파악하므로 리플로우 현상을 방지함
+  - 리플로우 현상: 스크롤 이벤트에서 특정 지점을 관찰하기 위해 getBoundingClientRect() 함수를 사용할 때 브라우저가 웹 페이지의 일부 또는 전체를 다시 그려야하게 되는 경우
+    1. offsetTop, offsetLeft, offsetWidth, offsetHeight
+    2. scrollTop/Left/Width/Height
+    3. clientTop/Left/Width/Height
+    4. getComputedStyle(), or currentStyle in IE
+    와 같은 정보를 요청할 때 (주로 스타일 정보)
+- 사용법
+
+  1. **intersection observer (관찰자) 생성**
+
+  ```
+  let options = {
+  root: document.querySelector('#scrollArea'),
+  rootMargin: '0px',
+  threshold: 1.0
+  }
+
+  let observer = new IntersectionObserver(callback, options);
+
+  /* 설명 */
+  - `threshold: 1.0` : 대상 요소가 root에 지정된 요소 내에서 100% 보여질 때 콜백이 호출될 것
+  - `callback` : 타깃 element가 교차되었을 때 실행할 함수
+  - `observer`: 콜백함수가 호출되는 IntersectionObserver
+  ```
+
+  2. **관찰 대상 요소 생성**
+
+  ```
+  let target = document.querySelector('#listItem');
+  observer.observe(target);
+
+  /* 설명 */
+  - 대상에 지정된 임계값을 충족할 때마다 IntersectionObserver 콜백이 호출됨
+  - callback은 ntersectionObserverEntry 객체 목록과 관찰자를 받음
+
+  let callback = (entries, observer) => {
+    entries.forEach(entry => {
+      // Each entry describes an intersection change for one observed
+      // target element:
+    });
+  };
+  ```
+
+### 2️⃣ tanstack query의 사용 이유(기존의 상태 관리 라이브러리와는 어떻게 다른지)와 사용 방법(reactJS와 nextJS에서)을 알아봅시다.
+
+- Tanstack Query는 서버 상태 가져오기, 캐싱, 동기화 및 업데이트를 매우 쉽게 만듦.
+- **전역 상태 관리 도구**는 애플리케이션의 상태를 관리하고 여러 컴포넌트 간 상태를 공유하기 위한 라이브러리로 Redux, Context API 등이 있다면, **React Query**는 데이터 요청 및 캐싱을 하기 위한 라이브러리이다. API 호출, 데이터 캐싱, 상태 관리 등의 작업을 담당함.
+- Tanstack Query의 장점
+  - Caching을 통해 앱의 속도 향상
+  - 동일한 데이터에 대한 중복 요청을 제거함
+  - 오래된 데이터의 상태를 파악해서 Updating을 지원함
+  - Garbage Collection을 이용해 서버 쪽 데이터 메모리 관리함
+  - React Hooks와 유사한 문법 인터페이스
+- 사용법
+
+  - `useQuery` (GET)
+
+    ```
+    const useGetItems = (id: string, options?: UseQueryOptions<Response>) => {
+      return useQuery<Response>({
+        queryKey: ['todos', surveyId],
+        queryFn: () => get<Response>(`/v1/todos?todos-id=${id}`),
+        ...options,
+      });
+    };
+
+    export default useGetItems;
+
+    // 객체 형식만 지원하는 v5
+    const { isLoading: isAllDataLoading, data: allData } = useGetItems(id);
+    ```
+
+  - `useMutation` (POST, UPDATE, DELETE)
+
+    ```
+    const useCreateItem = (options?: UseMutationOptions<CreateItemResponse, unknown, CreateItemRequest>) => {
+      return useMutation<CreateItemResponse, unknown, CreateItemRequest>({
+        mutationFn: ({ todo_count, todo }) =>
+          post<CreateItemResponse>('/v1/todos', { todo_count, todo }),
+        ...options,
+      });
+    };
+
+    export default useCreateItem;
+
+    const { mutate: createItem } = useCreateItem();
+    ```
+
+  - 캐싱하는 방법
+    - Query Key에 저장하여 Query key가 바뀔 때 새롭게 요청함
+
+### 3️⃣ 기본적인 git add, commit, push, pull, merge, rebase 등의 명령어에 대해 알아봅시다(+ git branch 전략이나 다른 git 명령어도 좋습니다!)
+
+- git add [디렉토리] / . : working directory에서 staging area로 올리기 (다음 변경(commit)을 기록할 때까지 변경분을 모아놓는 작업)
+- git commit -m “commit message” : staging area에 저장된 변경 사항들을 로컬 저장소로 올리기
+- git push : commit된 파일들을 원격 저장소로 업로드하기
+- git merge : 브랜치를 병합하는 커밋 로그가 master(main)에 Head로 새로 추가되어 합치기
+- git rebase : 브랜치를 베이스로 커밋을 재정렬하여 합치기
+
+- Git Branch 전략
+  - **필요한 이유?**
+    - 협업 시 서로 개발 중인 기능이나 수정사항이 독립적이게 되어 영향을 주지 않고 동시 진행 가능
+    - 각 브랜치가 특정 기능, 이슈에 대응하여 작업을 추적하고, 필요 시 작업 단위의 롤백이 가능하여 프로젝트 관리가 유연해짐
+    - Release를 원하는 버전 단위로 관리할 수 있도록 하여 배포 안정성을 향상시킴
+  - **Git Flow**
+    - `master`: 제품 출시 버전을 관리하는 메인 브랜치
+    - `develop`: 다음 출시 버전을 위해 개발하는 브랜치
+    - `feature`: 새로운 기능을 개발하는 브랜치
+    - `release`: 다음 출시 버전을 준비하는 브랜치
+    - `hotfix`: 출시된 제품의 버그를 고치기 위한 브랜치
+    - feature에서 작업이 완료된 것은 develop 브랜치로 병합됨. 다음 출시 버전이 있을 경우 release 브랜치를 따서 버그 해결 등을 거쳐 배포를 준비함. 이후 master 브랜치로 머지하여 제품 출시.
+    - 전통적인 방식
+  - **GitHub Flow**
+    - 하나의 base 브랜치 (master) + master에 기능을 추가하기 위한 브랜치 (feature) 두 가지로 운영하는 간단한 방식
+    - 빠른 수정과 배포, 단순하고 지속적인 배포에 유리함
+
+<br/>
+<hr>
+
+<details>
+<summary><h2>5주차 README</h2></summary>
+<div markdown="1">
+  
 ### 🩵 느낀 점
 
 **[송유선]** 협업으로 진행하는 첫 스터디 과제라 우여곡절이 많았던 것 같다. 초기 세팅을 맞출 때부터 오류가 많이 나서 당황했지만, 같이 극복하는 과정에서 배운 것도 많았다. (public 폴더의 위치에 따른 경로 설정부터, next.js 의 파일 구조까지...) 이번에 Next.js, Tailwind.css, OpenAPI 등 처음 써 보는 게 너무 많아서 더 애를 먹었던 것 같다. 효율적인 코드를 작성하고 싶었는데 맞게 작성하고 있는지 확신할 수가 없어서 답답했다.. 나는 main과 detail 페이지를 작업했는데, 고민을 했던 부분 중 하나는 메인홈에서 혼합되어 있는 컨텐츠들의 상세 페이지를 어떻게 라우팅할지였다. 종류가 movie랑 tv로 섞여 있는데 getContents에서 불러오는 정보에는 영화인지 티비 프로그램인지 알려주는 부분이 없었지만 detail 정보를 요청하기 위해서는 id 앞에 종류를 써야 했다. 그래서 아예 상세 페이지를 라우팅할 때 미리 정의한 media_type을 (`const media_type = category.includes('/tv') ? 'tv' : 'movie';`) id와 함께 주소에 넣고 넘긴 뒤 params로 작업했는데... 버셀에서 배포할 때 오류가 났다..^^ 로컬에선 아무 문제 없었는데, 배포 시에는 더 엄격한 타입 검증을 해서 그런 것 같다. params 말고 props 각각 타입 지정해보기도 하고 여러 방법을 써 봤는데 아직 만족스럽게 해결하지 못 했다... (결국 eslintrc 에 any 쓸 수 있도록 규칙 추가함...) 이 부분은 다음 주에 가능하면 좀 더 괜찮은 방향으로 수정해보고 싶다. 추가로, 이번에는 스켈레톤이나 로딩 중에 보여줄 화면을 따로 만들지 못했는데 다음 주에 간단하게라도 추가해보고 싶다.
@@ -152,3 +284,7 @@ Jamstack(Javascript, API, Markup) 구조의 프로젝트에 최적화되어 있�
 2. **EC2 인스턴스**: 가상 서버 인스턴스. 운영 체제와 소프트웨어를 설치하여 애플리케이션을 호스팅할 수 있고 서버를 확장하거나 줄일 수 있습니다.
 3. **AWS Lambda (서버리스 컴퓨팅)**: Vercel과 Netlify의 서버리스 함수와 유사하게 특정 이벤트에 따라 함수가 실행된다.
 4. **데이터베이스와 API 서비스**: RDS나 DynamoDB 등의 데이터베이스를 제공하고 API Gateway를 통해 서버리스 API를 통해 유연한 아키텍처 구성이 가능하다.
+
+</div>
+</details>
+<br/>

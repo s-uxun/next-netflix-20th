@@ -13,10 +13,10 @@ import { Content } from '@api/types';
 import { getSearchInfinite } from '@api/search';
 
 export default function SearchClient() {
-  const [contents, setContents] = useState<Content[]>([]);
-  const [query, setQuery] = useState('');
-  const [debouncedQuery, setDebouncedQuery] = useState('');
-  const { ref, inView } = useInView();
+  const [contents, setContents] = useState<Content[]>([]); // 결과 데이터
+  const [query, setQuery] = useState(''); // 입력한 검색어
+  const [debouncedQuery, setDebouncedQuery] = useState(''); // 디바운싱된 검색어
+  const { ref, inView } = useInView(); // 스크롤 영역 판단
 
   // 입력값 디바운싱
   const debouncedSearch = useDebouncedCallback((input: string) => {
@@ -37,23 +37,23 @@ export default function SearchClient() {
       },
       getNextPageParam: (lastPage) =>
         lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined,
-      initialPageParam: 1,
+      initialPageParam: 1, // 첫 번째 페이지 초기화 필수
     });
 
-  useEffect(() => {
-    if (data) {
-      const allItems = data?.pages.flatMap((page) => page.results) || [];
-      console.log('All fetched items:', allItems);
-      setContents(allItems);
-      console.log('ref' + ref);
-    }
-  }, [data]);
-
+  // 무한 스크롤 트리거 (스크롤이 ref 요소에 도달 시 다음 페이지 fetch)
   useEffect(() => {
     if (inView && hasNextPage && !isFetchingNextPage) {
       fetchNextPage();
     }
   }, [inView]);
+
+  // 새 데이터 불러올 때 검색 결과 업데이트
+  useEffect(() => {
+    if (data) {
+      const allItems = data?.pages.flatMap((page) => page.results) || [];
+      setContents(allItems);
+    }
+  }, [data]);
 
   return (
     <div className="flex flex-col flex-grow overflow-auto">
@@ -65,6 +65,8 @@ export default function SearchClient() {
       <div>
         {contents.map((content: Content, index) => (
           <div key={`${content.id}-${index}`}>
+            {' '}
+            {/*key 중복 방지*/}
             <Item
               id={content.id}
               title={content.original_title as string}
@@ -76,7 +78,7 @@ export default function SearchClient() {
           {isFetchingNextPage ? (
             <span></span>
           ) : (
-            hasNextPage && <div ref={ref}></div>
+            hasNextPage && <div ref={ref}></div> // 다음 페이지 로드 트리거
           )}
         </div>
       </div>

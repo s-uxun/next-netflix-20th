@@ -3,8 +3,12 @@ import Footer from '@components/common/Footer';
 import Play from '@public/icons/play.svg';
 import { Content } from '@api/types';
 
-export default async function Detail({ params }: any) {
-  // 빌드 오류 너무 나서.. 어쩔 수 없이... any...
+interface Params {
+  media_type: string;
+  id: string;
+}
+
+export default async function Detail({ params }: { params: Promise<Params> }) {
   const { media_type, id } = await params;
 
   try {
@@ -37,6 +41,6 @@ export default async function Detail({ params }: any) {
       </div>
     );
   } catch (error) {
-    console.error(error);
+    return null;
   }
 }

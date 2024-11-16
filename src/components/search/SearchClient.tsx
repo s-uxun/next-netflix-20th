@@ -1,13 +1,14 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useDebouncedCallback } from 'use-debounce';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { useInView } from 'react-intersection-observer';
+import dynamic from 'next/dynamic';
 
 // components
 import SearchInput from '@components/search/SearchInput';
-import Item from '@components/search/Item';
-import SkeletonItem from './SkeletonItem';
+const Item = dynamic(() => import('@components/search/Item'));
+import SkeletonItem from '@components/search/SkeletonItem'; // 스켈레톤 컴포넌트
 
 // type & api
 import { Content } from '@api/types';
@@ -62,27 +63,37 @@ export default function SearchClient() {
       <div className="text-White text-[1.67175rem] font-bold my-4">
         Top Searches
       </div>
-      <div>
-        {contents.map((content: Content, index) => (
-          <div key={`${content.id}-${index}`}>
-            {' '}
-            {/*key 중복 방지*/}
-            <Item
-              id={content.id}
-              title={content.original_title as string}
-              posterUrl={content.poster_path as string}
-            />
+      <Suspense
+        fallback={
+          <div>
+            {Array.from({ length: 10 }).map((_, index) => (
+              <SkeletonItem key={index} />
+            ))}
           </div>
-        ))}
-        <SkeletonItem />
-        {/* <div className="w-full h-[5px] bg-transparent">
-          {isFetchingNextPage ? (
-            <span></span>
-          ) : (
-            hasNextPage && <div ref={ref}></div> // 다음 페이지 로드 트리거
-          )}
-        </div> */}
-      </div>
+        }
+      >
+        <div>
+          {contents.map((content: Content, index) => (
+            <div key={`${content.id}-${index}`}>
+              {' '}
+              {/*key 중복 방지*/}
+              <Item
+                id={content.id}
+                title={content.original_title as string}
+                posterUrl={content.poster_path as string}
+              />
+            </div>
+          ))}
+          <SkeletonItem />
+          <div className="w-full h-[5px] bg-transparent">
+            {isFetchingNextPage ? (
+              <span></span>
+            ) : (
+              hasNextPage && <div ref={ref}></div> // 다음 페이지 로드 트리거
+            )}
+          </div>
+        </div>
+      </Suspense>
     </div>
   );
 }

@@ -7,6 +7,7 @@ import { useInView } from 'react-intersection-observer';
 // components
 import SearchInput from '@components/search/SearchInput';
 import Item from '@components/search/Item';
+import SkeletonItem from './SkeletonItem';
 
 // type & api
 import { Content } from '@api/types';
@@ -61,7 +62,6 @@ export default function SearchClient() {
       <div className="text-White text-[1.67175rem] font-bold my-4">
         Top Searches
       </div>
-
       <div>
         {contents.map((content: Content, index) => (
           <div key={`${content.id}-${index}`}>
@@ -74,13 +74,14 @@ export default function SearchClient() {
             />
           </div>
         ))}
-        <div className="w-full h-[5px] bg-transparent">
+        <SkeletonItem />
+        {/* <div className="w-full h-[5px] bg-transparent">
           {isFetchingNextPage ? (
             <span></span>
           ) : (
             hasNextPage && <div ref={ref}></div> // 다음 페이지 로드 트리거
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );

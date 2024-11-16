@@ -18,14 +18,13 @@ const BigSquareList = ({
             key={content.id}
             href={`/details/${content.media_type}/${content.id}`}
           >
-            <div className="h-60 min-w-36 relative">
-              {' '}
+            <div className="h-60 min-w-36 relative rounded-sm my-1">
               <Image
                 src={`https://image.tmdb.org/t/p/original${content.poster_path}`}
                 alt={content.title || content.name || ''}
                 layout="fill"
                 objectFit="cover"
-                className="rounded-sm cursor-pointer hover:scale-105 my-1"
+                className="rounded-sm cursor-pointer hover:scale-105"
               />
             </div>
           </Link>

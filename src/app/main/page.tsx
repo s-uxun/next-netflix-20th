@@ -41,6 +41,20 @@ export default async function Main() {
       { type: 'SquareList', contents: contents[7], title: 'US TV Shows' },
     ];
 
+    const renderSquareList = () => {
+      return squareListData.map((data, index) => {
+        const ListComponent =
+          data.type === 'SquareList' ? SquareList : BigSquareList;
+        return (
+          <ListComponent
+            key={index}
+            contents={data.contents}
+            title={data.title}
+          />
+        );
+      });
+    };
+
     return (
       <div className="flex flex-col w-full h-screen">
         <Header />
@@ -58,26 +72,7 @@ export default async function Main() {
             contents={circleListData.contents}
             title={circleListData.title}
           />
-          {squareListData.map((data, index) => {
-            if (data.type === 'SquareList') {
-              return (
-                <SquareList
-                  key={index}
-                  contents={data.contents}
-                  title={data.title}
-                />
-              );
-            } else if (data.type === 'BigSquareList') {
-              return (
-                <BigSquareList
-                  key={index}
-                  contents={data.contents}
-                  title={data.title}
-                />
-              );
-            }
-            return null;
-          })}
+          {renderSquareList()}
         </div>
         <Footer tab={1} />
       </div>

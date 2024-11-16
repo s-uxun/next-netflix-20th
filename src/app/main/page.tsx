@@ -1,5 +1,5 @@
 import Header from '@components/common/Header';
-import { getAllMovies } from '@api/getData';
+import { getAllContents } from '@api/getData';
 import CircleList from '@components/main/CircleList';
 import Buttons from '@components/main/Buttons';
 import SquareList from '@components/main/SquareList';
@@ -8,7 +8,7 @@ import Footer from '@components/common/Footer';
 
 export default async function Main() {
   try {
-    const contents = (await getAllMovies()) || [];
+    const contents = await getAllContents();
     const posterMovie = contents[2] && contents[2][1];
     const circleListData = {
       contents: contents[4],

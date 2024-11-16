@@ -20,7 +20,7 @@ export const getContents = async (category: string) => {
   }
 };
 
-export const getAllMovies = async () => {
+export const getAllContents = async () => {
   const categories = [
     '/movie/popular',
     '/movie/top_rated',

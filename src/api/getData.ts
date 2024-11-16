@@ -17,7 +17,7 @@ export const getContents = async (category: string) => {
       media_type,
     }));
   } catch (error) {
-    console.log(error);
+    return [];
   }
 };
 
@@ -36,7 +36,7 @@ export const getAllMovies = async () => {
     const movies = await Promise.all(categories.map(getContents));
     return movies;
   } catch (error) {
-    console.log(error);
+    return [];
   }
 };
 

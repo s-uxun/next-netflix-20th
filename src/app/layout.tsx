@@ -5,7 +5,7 @@ import Provider from '@components/common/Provider';
 export const metadata = {
   title: 'Netflix-Onedwo',
   description: 'Netflix Clone Coding using Next.js by Onedwo-Punch',
-  keywords: 'Next.js, web development, SEO, Netflix',
+  keywords: 'Next.js, web development, SEO, Netflix clone',
   robots: 'index, follow',
   author: 'Onedwo-Punch',
   openGraph: {
@@ -14,7 +14,6 @@ export const metadata = {
     url: 'https://next-netflix-20th-onedwo.vercel.app',
     type: 'website',
     site_name: 'Netflix Clone',
-    image: 'public/icons/logo.svg',
   },
 };
 

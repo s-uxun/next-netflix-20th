@@ -1,5 +1,6 @@
 import { Content } from '@api/types';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const BigSquareList = ({
   contents,
@@ -17,12 +18,16 @@ const BigSquareList = ({
             key={content.id}
             href={`/details/${content.media_type}/${content.id}`}
           >
-            <img
-              key={content.id}
-              src={`https://image.tmdb.org/t/p/original${content.poster_path}`}
-              alt={content.title}
-              className="h-60 min-w-36 object-cover rounded-sm cursor-pointer hover:scale-105 hover: my-1"
-            />
+            <div className="h-60 min-w-36 relative">
+              {' '}
+              <Image
+                src={`https://image.tmdb.org/t/p/original${content.poster_path}`}
+                alt={content.title || content.name || ''}
+                layout="fill"
+                objectFit="cover"
+                className="rounded-sm cursor-pointer hover:scale-105 my-1"
+              />
+            </div>
           </Link>
         ))}
       </div>
